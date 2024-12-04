@@ -12,7 +12,6 @@ const connection = mysql.createConnection(process.env.DATABASE_URL)
 app.get('/', (req, res) => {
     res.send('Hello world!!')
 })
-
 app.get('/users', (req, res) => {
     connection.query(
         'SELECT * FROM users',
@@ -21,7 +20,6 @@ app.get('/users', (req, res) => {
         }
     )
 })
-
 app.get('/users/:id', (req, res) => {
     const id = req.params.id;
     connection.query(
@@ -31,7 +29,6 @@ app.get('/users/:id', (req, res) => {
         }
     )
 })
-
 app.post('/users', (req, res) => {
     connection.query(
         'INSERT INTO `users` (`fname`, `lname`, `username`, `password`, `avatar`) VALUES (?, ?, ?, ?, ?)',
@@ -46,7 +43,6 @@ app.post('/users', (req, res) => {
         }
     )
 })
-
 app.put('/users', (req, res) => {
     connection.query(
         'UPDATE `users` SET `fname`=?, `lname`=?, `username`=?, `password`=?, `avatar`=? WHERE id =?',
@@ -56,7 +52,6 @@ app.put('/users', (req, res) => {
         }
     )
 })
-
 app.delete('/users', (req, res) => {
     connection.query(
         'DELETE FROM `users` WHERE id =?',
@@ -73,4 +68,3 @@ app.listen(process.env.PORT || 3000, () => {
 
 // export the app for vercel serverless functions
 module.exports = app;
-
